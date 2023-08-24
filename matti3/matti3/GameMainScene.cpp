@@ -1,5 +1,5 @@
-#include"GamwMainScene.h"
-#include"DxLiid.h"
+#include"GameMainScene.h"
+#include"DxLib.h"
 #include"Stage.h"
 #include"SceneManager.h"
 
@@ -31,11 +31,13 @@ int GameScore;
 
 int GameLevel;
 
+int GameMission;
+
 int GameTime;
 
 int GameCount;//初期化されないようにカウントする
 
-int ReStarFlag;
+int ReStartFlag;
 
 
 
@@ -67,10 +69,15 @@ int GameMainScene_Initialize(void)
 
 	int i;
 
+
+
+
+
 	//画像読み込み
 
-	Load　DivGraph("images/number.pug", NUMBER_IMAGE_MAX,
-		NUMBER_IMAGE_MAX, 1, 60, 120, NumberImage);
+	LoadDivGraph("images/number.pug", NUMBER_IMAGE_MAX,
+
+NUMBER_IMAGE_MAX, 1, 60, 120, NumberImage);
 
 	//ステージの初期化
 
@@ -81,10 +88,10 @@ int GameMainScene_Initialize(void)
 	for (i = 0; i < NUMBER_IMAGE_MAX; i++)
 
 	{
-		if (Numberimage[i] == D_ERROR)
+		if (NumberImage[i] == D_ERROR)
 		{
 
-			ret = D = ERROR;
+			ret = D_ERROR;
 
 
 			break;
@@ -96,14 +103,16 @@ int GameMainScene_Initialize(void)
 
 	//ゲームプレイかどうか？
 
-	if (GameCount == 0);//スコアの初期化
+	if (GameCount == 0)//スコアの初期化
 	{
 
 		GameScore = 0;//ゲームレベルの初期化
 
 		GameLevel = 1;//ミッションの初期化
 
-		set_StageMission(3);//次カ回の設定
+		Set_StageMission(3);//次カ回の設定
+
+		GameCount++;   //次回の設定
 
 	}
 
@@ -117,14 +126,12 @@ int GameMainScene_Initialize(void)
 
 	}
 
-	{
+	GameTime = TIMELIMT; //制限時間の初期化
 
-		GameTime = TIMELIMT;//制限時間の初期化
-
-		return ret;
+	return ret;
 
 
-	}
+}
 
 	/********************************
 
@@ -164,14 +171,11 @@ int GameMainScene_Initialize(void)
 
 		case4:
 
-			CheckClear();　　　　　//クリアチェック
+			CheckClear();          //クリアチェック
 
 			break;
-
-
-
+		
 		default:
-
 
 			break;
 
@@ -189,7 +193,7 @@ int GameMainScene_Initialize(void)
 
 		{
 
-			Change_Scene(EGAME_OVER);
+			Change_Scene(E_GAME_OVER);
 
 		}
 
@@ -214,13 +218,13 @@ int GameMainScene_Initialize(void)
 	***************/
 
 
-	voidGameMainScene_Draw(void)
+	void GameMainScene_Draw(void)
 
 	{
 
 		int PosX = 600;
 
-		inttmp_level = GameLevel;
+		int tmp_level = GameLevel;
 
 		int tmp_score = Get_StageScore();
 
@@ -230,7 +234,7 @@ int GameMainScene_Initialize(void)
 
 		{
 
-			FedeOutBlock();      //フェードアウトする
+			FadeOutBlock();      //フェードアウトする
 
 		}
 
@@ -249,20 +253,19 @@ int GameMainScene_Initialize(void)
 
 		//スコアの描画
 
-		Posx = 620;
+		PosX = 620;
 
 		do {
 
-
-			DrewRotaGraph(PosX, 160, 0.3f, 0, NumderImage[tmp_scpre % 10],
+			DrawRotaGraph(PosX, 160, 0.3f, 0, NumberImage[tmp_score % 10],
 
 				TRUE);
 
 			tmp_score /= 10;
-			Posx -= 30;
+			PosX -= 30;
 
 
-		}While(tmp_score > 0);
+		}while(tmp_score > 0);
 
 
 

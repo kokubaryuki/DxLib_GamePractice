@@ -125,7 +125,7 @@ int GetOldKey(int key)
 *********************/
 
 
-int GetNowkey(int key)
+int GetNowKey(int key)
 
 {
 
@@ -148,11 +148,15 @@ int GetNowkey(int key)
 
 ***********************/
 
-int GetkeyFlg(int key)
+int GetKeyFlg(int key)
+
 {
+
 	int ret = FALSE;
 
 	int keyflg = now_button & ~old_button;
+
+
 
 	if ((key & keyflg) != FALSE)
 
@@ -172,7 +176,7 @@ int GetkeyFlg(int key)
 
 ***********************/
 
-int GetMouse_positionX(void)
+int GetMousePositionX(void)
 {
 
 	return mouse_position_x;
@@ -187,7 +191,7 @@ int GetMouse_positionX(void)
 
 ****************************************/
 
-int GetMousePosition(void)
+int GetMousePositionY(void)
 {
 
 	return mouse_position_y;

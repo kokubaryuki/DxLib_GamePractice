@@ -1,4 +1,4 @@
-#pragma onec
+#pragma once
 
 
 /********************************
@@ -28,6 +28,3 @@ void FreamControl_Initialize(void);
 
 
 void FreamControl_Update(void);
-
-
-#pragma once

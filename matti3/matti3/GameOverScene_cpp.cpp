@@ -1,5 +1,5 @@
 #include"GameOverScene.h"
-#include"DxLid.h"
+#include"DxLib.h"
 #include"SceneManager.h"
 
 
@@ -32,7 +32,7 @@ int GameOverFlag;
 
 ***********************/
 
-int GameOverScene_Initalize(void)
+int GameOverScene_Initialize(void)
 
 {
 
@@ -58,7 +58,7 @@ int GameOverScene_Initalize(void)
 		ret=-1;
 	}
 
-	if (GameOverSE = -1)
+	if (GameOverSE == -1)
 
 	{
 		ret = -1;
@@ -69,8 +69,48 @@ int GameOverScene_Initalize(void)
 
 }
 
+/********************
+
+*ゲームオーバー画面：更新処理
+* 引数：なし
+* 戻り値
+
+*********************/
+
+void GameOverScene_Update(void)
+{
+	//ゲームオーバー効果再生チェック
+
+	if (CheckSoundMem(GameOverSE) == 0)
+
+	{
+		if (GameOverFlag == TRUE)
+
+		{
+			Change_Scene(E_GAME_OVER);
+
+		}
+		else
+
+			{
+			PlaySoundMem(GameOverSE, DX_PLAYTYPE_BACK);
+
+			GameOverFlag= TRUE;
+
+
+		
+
+		}
+
+
+	}
+
+}
+
+
+
 /***********************************
-*ゲームオーバーの画面：更新処理
+*ゲームオーバーの画面：描画処理
 
 *引数：なし
 
@@ -78,7 +118,9 @@ int GameOverScene_Initalize(void)
 
 **********************************/
 
-void GameOverScene_Update(void)
+
+
+void GameOverScene_Draw(void)
 
 {
 	//ゲームオーバー画像表示

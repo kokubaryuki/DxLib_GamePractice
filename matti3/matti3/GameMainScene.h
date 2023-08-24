@@ -26,7 +26,7 @@ int GameMainScene_Initialize(void);
 
 void GameMainScene_Update(void);
 
-void GameMainScane_Draw(void);
+void GameMainScene_Draw(void);
 
 
 

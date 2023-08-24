@@ -49,7 +49,7 @@ int GameClearScene_Initialize(void)
 
 	//画像読み込み
 
-	GameClearImage = LoadGraph("images/gamwclear.png");
+	GameClearImage = LoadGraph("images/gameclear.png");
 
 	//音源の読み込み
 
@@ -60,6 +60,41 @@ int GameClearScene_Initialize(void)
 	//エラーチェック
 
 	if (GameClearImage == -1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	{
 		ret = -1;
 	}
@@ -93,7 +128,7 @@ void GameClearScene_Update(void)
 		{
 			Change_Scene(E_GAMEMAIN);
 		}
-		eles
+		else
 
 		{
 			PlaySoundMem(GameClearSE,DX_PLAYTYPE_BACK);

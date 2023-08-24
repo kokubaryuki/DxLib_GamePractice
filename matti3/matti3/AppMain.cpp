@@ -1,13 +1,14 @@
 /**********************************************************
 
 *プログラミング実習
+
 *マッチ3ゲームの制御
 
 *******************************************************/
 
 
 
-#include"DxLob.h"
+#include"DxLib.h"
 #include"FreamControl.h"
 #include"InputControl.h"
 #include"SceneManager.h"
@@ -16,15 +17,14 @@
 
 /*******************************************************
 
-
 *マクロ定義
 
 *******************************************************/
 
-#define SCREEN_HEIGHT     (480)
-#define SCREEN_WIDTH      (640)
-#define SCREEN_COLORBIT   (32)
-#define FONT_SIZE        (20)
+#define SCREEN_HEIGHT     (480)//スクリーンサイズ（高さ）
+#define SCREEN_WIDTH      (640)//スクリーンサイズ（幅）
+#define SCREEN_COLORBIT   (32)//スクリーンカラーピット
+#define FONT_SIZE        (20)//文字サイズ
 
 /**************************************************:
 
@@ -54,25 +54,29 @@
 
 **********************************************/
 
-
-int WINAPI WinMain(_In_HINSTANCE nINstance, _In_opt_HINSTANCE hPrevInstance,
-	_In_LPSTR lpCmdLine, _In_int nShowCmd)
+int WINAPI WinMain(_In_ HINSTANCE hINstance,_In_opt_ HINSTANCE hPrevInstance,
+_In_ LPSTR lpCmdLine,_In_ int nShowCmd)
 
 {
+	
 
-	SetMainWindewText("Match3Puzzle");
-
-	ChangeWindewMode(TRUE);
-
-	setGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_COLORBIT);
+	SetMainWindowText("Match 3 Puzzle");
 
 
+	
+	ChangeWindowMode(TRUE);
 
-	if (DxLLid_Init() == D_ERROR)
+
+    
+	SetGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_COLORBIT);
+
+
+
+	if (DxLib_Init() == D_ERROR)
 
 	{
 
-		returnD_ERROR;
+		return D_ERROR;
 	}
 
 	FreamControl_Initialize();
@@ -80,11 +84,11 @@ int WINAPI WinMain(_In_HINSTANCE nINstance, _In_opt_HINSTANCE hPrevInstance,
 	Input_Initialize();
 
 
-	if (SceneManager_Intialize(E_TITLE) == D_ERROR)
+	if (SceneManager_Initialize(E_TITLE) == D_ERROR)
 
 	{
 
-		returnD_ERROR;
+		return D_ERROR;
 
 	}
 
@@ -95,16 +99,18 @@ int WINAPI WinMain(_In_HINSTANCE nINstance, _In_opt_HINSTANCE hPrevInstance,
 	SetFontSize(FONT_SIZE);
 
 
-	while (PeocessMessage() != D_ERROR && Input_Escape() == FALSE)
+	while (ProcessMessage() != D_ERROR && Input_Escape() == FALSE)
 
 	{
 
 		Input_Update();
 
 
-		SceneManger_Update();
+		SceneManager_Update();
 
 		ClearDrawScreen();
+
+		SceneManager_Draw();
 
 		FreamControl_Update();
 
@@ -114,7 +120,7 @@ int WINAPI WinMain(_In_HINSTANCE nINstance, _In_opt_HINSTANCE hPrevInstance,
 	}
 
 
-	DxLid_End();
+	DxLib_End();
 
 
 	return 0;

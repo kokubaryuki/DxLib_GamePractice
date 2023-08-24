@@ -1,22 +1,31 @@
 #include<stdio.h>
 
-int main(void)
-{
+int search(int* a, int n, int key) {
 
-	int i, j, g;
-	int a[5][5] = { {1,8,7,3,1},{6,5,4,8,9},{2,3,4,5,6} };
-	int x[5] = { 0,0,0,0,0 };
-	int y[5] = { 0,0,0,0,0 };
-	g = 0;
+	int i;
+	a[n] = key;
+	i = 0;
 
-
-	for (i = 0; i < 5; i++) {
-		for (j = 0; j < 5; j++) {
-			x[i] = x[i] + a[i][j];
-			y[j] = y[j] + a[i][j];
-		}
-		g = x[i] + g;
+	while (key != a[i]) {
+		i++;
 	}
-	printf("配列の合計値%d\n", g);
+	if (i == n) {
+		printf("エラー");
+		i = -1;
+	}
+	return i;
 }
 
+int main(void)
+{
+	int key;
+	int a[7] = { 1003,1012,1053,1031,1021,1075,0 };
+
+	int alen = sizeof(a) / sizeof(int);
+
+	printf("車両番号を入力してください（4桁の半角文字）");
+	scanf_s("%d", &key);
+
+	printf("入力データの添え字は%d", search(a, alen - 1, key));
+
+}

@@ -26,9 +26,9 @@
 
 ******************************/
 
-GAME_MODE Game_Mode;      
+GAME_MODE Game_Mode;      //ゲームモード情報（現在）
 
-GAME_MODE Next_Mode;
+GAME_MODE Next_Mode;      //ゲームモード情報　（次）
 
 /*************************
 
@@ -56,7 +56,7 @@ int SceneManager_Initialize(GAME_MODE mode)
 	//シーン読み込み
 	//タイトル画面
 
-	Read_Error = TitleScene_Initialize();
+	Read_Error =TitleScene_Initialize();
 
 	if (Read_Error == D_ERROR)
 
@@ -67,7 +67,7 @@ int SceneManager_Initialize(GAME_MODE mode)
 
 	//ゲームメイン画面
 
-	Read_Error = GameMainScene_Initialze();
+	Read_Error = GameMainScene_Initialize();
 
 	if (Read_Error == D_ERROR)
 
@@ -91,7 +91,7 @@ int SceneManager_Initialize(GAME_MODE mode)
 
 	//ゲームオーバー画面
 
-	Read_Error = GameOverscene_Initialize();
+	Read_Error = GameOverScene_Initialize();
 
 	if (Read_Error == D_ERROR)
 
@@ -118,7 +118,7 @@ int SceneManager_Initialize(GAME_MODE mode)
 
 *****************************************/
 
-void SceneManager_+(void)
+void SceneManager_Update(void)
 
 {
 
@@ -146,7 +146,7 @@ void SceneManager_+(void)
 
 	case E_GAMEMAIN:
 
-		ganemainScene_Update();
+		GameMainScene_Update();
 
 		break;
 
@@ -158,7 +158,7 @@ void SceneManager_+(void)
 
 	case E_GAME_OVER:
 
-		GameOVerScene_Update();
+		GameOverScene_Update();
 
 		break;
 
@@ -187,9 +187,92 @@ void SceneManager_Draw(void)
 
 {
 
+	//各画面の描画処理
+
+	switch (Game_Mode)
+
+	{
+
+	case E_TITLE:
+
+		TitleScene_Draw();
+
+		break;
+
+
+	case E_GAMEMAIN:
+
+		GameMainScene_Draw();
+
+		break;
+
+
+	case E_GAME_CLEAR:
+
+		GameClearScene_Draw();
+
+		break;
+
+
+	case E_GAME_OVER:
+
+		GameOverScene_Draw();
+
+		break;
+
+
+	 default:
+
+		 break;
+
+
+	}
+
+
+}
+
+/*******************************
+
+*シーン管理機能：シーン切替処理
+* 引数：変更するゲームモード
+* 戻り値：なし
+
+*******************************/
+
+
+void Change_Scene(GAME_MODE mode)
+
+{
+
 	Next_Mode = mode;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

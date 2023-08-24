@@ -22,8 +22,8 @@
 ***********************/
 
 
-int GameMainScene_Initailze(void);
+int GameClearScene_Initialize(void);
 
-void GameMainScene_Update(void);
+void GameClearScene_Update(void);
 
-void GameMainScene_Draw(void);
+void GameClearScene_Draw(void);

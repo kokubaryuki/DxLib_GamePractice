@@ -8,7 +8,6 @@
 ***********************/
 
 
-
 /************************
 
 *Œ^’è‹`
@@ -22,7 +21,7 @@
 
 ********************/
 
-int TitleScene_Inialize(void);
+int TitleScene_Initialize(void);
 
 void TitleScene_Update(void);
 
